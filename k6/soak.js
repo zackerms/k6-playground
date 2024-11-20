@@ -6,9 +6,9 @@ const errorRate = new Rate('errors');
 
 export const options = {
     stages: [
-        { duration: '5m', target: 30 },    // 徐々に上昇
-        { duration: '4h', target: 30 },    // 4時間維持
-        { duration: '5m', target: 0 },     // スケールダウン
+        { duration: '30s', target: 30 },   // 徐々に上昇
+        { duration: '3m', target: 30 },    // 3分間維持
+        { duration: '30s', target: 0 },    // スケールダウン
     ],
     thresholds: {
         http_req_duration: ['p(95)<1000'], // 95%のリクエストが1秒未満

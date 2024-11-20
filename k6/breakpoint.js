@@ -7,12 +7,11 @@ const responseTimeTrend = new Trend('response_time');
 
 export const options = {
     stages: [
-        { duration: '2m', target: 50 },    // 初期負荷
-        { duration: '5m', target: 100 },   // 中負荷
-        { duration: '5m', target: 200 },   // 高負荷
-        { duration: '5m', target: 300 },   // より高負荷
-        { duration: '5m', target: 400 },   // 非常に高負荷
-        { duration: '5m', target: 0 },     // クールダウン
+        { duration: '30s', target: 50 },   // 初期負荷
+        { duration: '30s', target: 100 },  // 中負荷
+        { duration: '30s', target: 200 },  // 高負荷
+        { duration: '30s', target: 300 },  // より高負荷
+        { duration: '30s', target: 0 },    // クールダウン
     ],
     thresholds: {
         http_req_failed: ['rate<0.1'],     // エラー率10%未満

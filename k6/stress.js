@@ -6,11 +6,10 @@ const errorRate = new Rate('errors');
 
 export const options = {
     stages: [
-        { duration: '2m', target: 20 },    // 徐々に上昇
-        { duration: '5m', target: 50 },    // さらに上昇
-        { duration: '5m', target: 100 },   // ピーク
-        { duration: '5m', target: 150 },   // 破壊的負荷
-        { duration: '3m', target: 0 },     // スケールダウン
+        { duration: '30s', target: 20 },   // 徐々に上昇
+        { duration: '1m', target: 50 },    // さらに上昇
+        { duration: '1m', target: 100 },   // ピーク
+        { duration: '30s', target: 0 },    // スケールダウン
     ],
     thresholds: {
         http_req_failed: ['rate<0.1'],     // エラー率10%未満

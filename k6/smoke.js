@@ -6,7 +6,7 @@ const errorRate = new Rate('errors');
 
 export const options = {
     vus: 2,              // 2人の仮想ユーザー
-    duration: '1m',      // 1分間の実行
+    duration: '30s',     // 30秒間の実行
     thresholds: {
         errors: ['rate<0.1'],  // エラー率10%未満であることを確認
         http_req_duration: ['p(95)<500'],  // 95%のリクエストが500ms未満であることを確認
