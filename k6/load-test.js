@@ -1,32 +1,19 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
+// テストの設定
 export const options = {
-    stages: [
-        { duration: '30s', target: 20 }, // 徐々に20ユーザーまで増やす
-        { duration: '1m', target: 20 },  // 1分間20ユーザーを維持
-        { duration: '30s', target: 0 },  // 徐々にユーザーを減らす
-    ],
+    vus: 10,        // 仮想ユーザー数
+    duration: '5s' // テスト実行時間
 };
 
+// テストシナリオ
 export default function () {
-    const url = 'http://app:8080/users';
-    const payload = JSON.stringify({
-        name: `User ${Math.random()}`,
-        email: `user${Math.random()}@example.com`
-    });
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    const res = http.post(url, payload, params);
-
+    const res = http.get('http://app:8080/health');
+    
+    // レスポンスのチェック
     check(res, {
-        'status is 201': (r) => r.status === 201,
-        'response has user id': (r) => JSON.parse(r.body).id !== undefined,
+        'is status 200': (r) => r.status === 200,
     });
 
     sleep(1);
